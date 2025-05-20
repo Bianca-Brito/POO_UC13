@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="col-md-4 text-center">
-    <img src="assets/img/poo.jpeg" class="img-fluid rounded shadow" alt="Imagem sobre POO">
+    <img src="assets/img/poo.jfif" class="img-fluid rounded shadow" alt="Imagem sobre POO">
 </div>
 </div>
  
