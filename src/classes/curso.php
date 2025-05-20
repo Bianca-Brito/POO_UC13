@@ -1,5 +1,6 @@
 <?php
- 
+  require_once "db/conexao.php";
+
 class Curso {
     public $titulo;
     public $horas;
@@ -33,5 +34,28 @@ class Curso {
         echo "Horas: <strong>$this->horas</strong> anos<br>";
         echo "<p>Dias: <strong>$this->dias</strong><br>";
         echo "Aluno: <strong>" . $this->aluno . "</strong></p>";
+    }
+
+      // Método para cadastrar a escola no banco de dados
+    public function cadastrar() {
+        // Conexão com o banco de dados
+        $database = new Conexao();
+        $conn = $database->getConexao();
+ 
+        // Preparar a consulta SQL
+        $query = "INSERT INTO curso (titulo, horas, dias) VALUES (:titulo, :horas, :dias)";
+        $stmt = $conn->prepare($query);
+ 
+        // Bind dos parâmetros
+        $stmt->bindParam(':titulo', $this->titulo);
+        $stmt->bindParam(':horas', $this->horas);
+        $stmt->bindParam(':dias', $this->dias);
+ 
+        // Executar a consulta
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "/../classes/curso.php";
+require_once "src/classes/curso.php";
 
 //Inicializa as variáveis
 $titulo = $horas = $dias =  $aluno = "";
@@ -11,11 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $horas = trim($_POST["horas"]);
     $dias = trim($_POST["dias"]);
     $aluno = trim($_POST["aluno"]);
-    try {
-        $curso = new Curso($titulo, $horas, $dias, $aluno);
-        $cursoCriado = true;
-    } catch (Exception $e) {
-        echo "<div class='alert alert-danger mt-3'>" . $e->getMessage() . "</div>";
+   
+     $curso = new Curso($titulo, $horas, $dias, $aluno);
+    $cursoCriado = $curso->cadastrar();
+ 
+    if ($cursoCriado) {
+        echo "<div class='alert alert-success'>Cadastro efetuado com sucesso</div>";
+    } else {
+        echo "<div class='alert alert-danger'>Erro ao cadastrar a escola</div>";
     }
 }
 ?>
