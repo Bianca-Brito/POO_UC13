@@ -1,5 +1,7 @@
 <?php
  
+ require_once "db/conexao.php";
+
 class Aluno {
     public $nome;
     public $idade;
@@ -37,6 +39,30 @@ class Aluno {
         echo "Idade: <strong>$this->idade</strong> anos<br>";
         echo "CPF: <strong>" . $this->getCpf() . "</strong></p>";
         echo "<p>Curso: <strong>$this->curso</strong><br>";
+    }
+
+     // Método para cadastrar a escola no banco de dados
+    public function cadastrar() {
+        // Conexão com o banco de dados
+        $database = new Conexao();
+        $conn = $database->getConexao();
+ 
+        // Preparar a consulta SQL
+        $query = "INSERT INTO aluno (nome, idade, cpf) VALUES (:nome, :idade, :cpf)";
+        $stmt = $conn->prepare($query);
+ 
+        // Bind dos parâmetros
+        $stmt->bindParam(':nome', $this->nome);
+        $stmt->bindParam(':idade', $this->idade);
+        $stmt->bindParam(':cpf', $this->cpf);
+      
+ 
+        // Executar a consulta
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
  
