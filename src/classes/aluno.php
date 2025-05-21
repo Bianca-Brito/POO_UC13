@@ -62,7 +62,25 @@ class Aluno {
             return true;
         } else {
             return false;
-        }
+        }     
     }
+      
+    // Método para listar os alunos
+    public static function listar() {
+        // Conexão com o banco de dados
+        $database = new Database();
+        $conn = $database->getConnection();
+ 
+        // Preparar a consulta SQL
+        $query = "SELECT * FROM aluno";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+ 
+        // Retornar os resultados
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+ 
+    
 }
+
  

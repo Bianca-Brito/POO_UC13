@@ -55,9 +55,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </form>
 
-<?php
-if ($alunoCriado){
-    echo "<h3>Resultado:</h3>";
-    $aluno->exibirDados();
-}
-?>
+<h3>Lista de Alunos</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Idade</th>
+        </tr>
+    </thead>
+    <tbody>
+       <?php if ($aluno && count($alunos) > 0): ?>
+            <?php foreach ($alunos as $alunos): ?>
+                <tr>
+                    <td><?= htmlspecialchars($aluno['nome']) ?></td>
+                    <td><?= htmlspecialchars($aluno['cpf']) ?></td>
+                    <td><?= htmlspecialchars($aluno['idade']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="4" class="text-center">Nenhum aluno cadastrado.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+ 
