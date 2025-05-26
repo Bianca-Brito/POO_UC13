@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<div class='alert alert-danger'>Erro ao cadastrar a escola</div>";
     }
 }
+$alunos = Aluno::listar();
 ?>
 
 <h2>Cadastro de Aluno</h2>
@@ -65,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
     </thead>
     <tbody>
-       <?php if ($aluno && count($alunos) > 0): ?>
-            <?php foreach ($alunos as $alunos): ?>
+       <?php if ($alunos && count($alunos) > 0): ?>
+            <?php foreach ($alunos as $aluno): ?>
                 <tr>
                     <td><?= htmlspecialchars($aluno['nome']) ?></td>
                     <td><?= htmlspecialchars($aluno['cpf']) ?></td>
@@ -80,4 +81,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
     </tbody>
 </table>
- 

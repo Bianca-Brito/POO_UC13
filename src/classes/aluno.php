@@ -64,12 +64,12 @@ class Aluno {
             return false;
         }     
     }
-      
-    // Método para listar os alunos
-    public static function listar() {
+    
+ // Método para listar os alunos
+    public static function listar(){
         // Conexão com o banco de dados
-        $database = new Database();
-        $conn = $database->getConnection();
+        $database = new Conexao();
+        $conn = $database->getConexao();
  
         // Preparar a consulta SQL
         $query = "SELECT * FROM aluno";
@@ -80,7 +80,4 @@ class Aluno {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
  
-    
-}
-
- 
+} 
